@@ -1,0 +1,11 @@
+import { z } from 'zod'
+
+const taskSchema = z.string().trim().nonempty({message: 'Task must not be empty'})
+
+export const userTasksSchema = z.object({
+    email: z
+        .string()
+        .email({message: 'Invalid email'}).refine(email=>email.trim()),
+    
+    tasks: z.array(taskSchema)
+})

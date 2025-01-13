@@ -7,7 +7,7 @@ export const errorHandler = (
 	next: NextFunction
 ): void => {
     
-	/* if (err.name === "InvalidInputData") {
+	if (err.name === "InvalidInputData") {
 		res.status(400).json({
 			message: err.message,
 		});
@@ -19,7 +19,7 @@ export const errorHandler = (
 			message: err.message,
 		});
 		return;
-	} */
+	} 
 
 	res.status(500).json({ message: "Internal Server Error" });
 };
