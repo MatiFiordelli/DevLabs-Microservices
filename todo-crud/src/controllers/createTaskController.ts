@@ -1,32 +1,35 @@
 import { NextFunction, Request, Response } from "express";
-//import { User } from "../models";
+import { UserTasks } from "../models";
 
 export const createTaskController = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-	/* const { email, password } = req.body;
+	const { email, task } = req.body
+
+	if (!email || !task) {
+		const error = new Error('Email and Task are required')
+		error.name = 'EmailAndTaskAreRequired'
+		throw error
+	}
 
 	try {
-		const user = await User.findOne({ email })
+		const updatedDocument = await UserTasks.findOneAndUpdate(
+			{ email: email }, 
+			{ $push: { tasks: {title: task}} },
+			{ 
+				new: true,    //new - return updated document
+				upsert: true  //upsert - if there is no document with this email, create one
+			}
+		)
 
-		if (!user) {
-			res.status(400).json({ message: 'Invalid email or password'})
-			return
+		if (updatedDocument) {
+			res.status(200).json({ updatedDocument, message: 'OK' })
+		} else {
+			const error = new Error('Document not found')
+            error.name = 'DocumentNotFound'
+            throw error
 		}
 
-		const passwordIsMatch = await bcrypt.compare(password, user.password)
-
-		if (!passwordIsMatch) {
-			res.status(400).json({ message: 'Invalid email or password'})
-			return
-		}
-
-		const SECRET = process.env.SECRET_FOR_TOKEN as string
-
-		const token = jwt.sign({ userId: user._id, email: user.email }, SECRET, { expiresIn: '7d' } )
-
-		res.status(200).json({ token: token, message: 'OK' })
-		
 	} catch (error) {
 		console.error(error)
-		res.status(500).json({ message: "Internal server error" });
-	} */
+		next(error)
+	}
 };

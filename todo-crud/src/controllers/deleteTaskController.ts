@@ -1,32 +1,38 @@
 import { NextFunction, Request, Response } from "express";
-//import { User } from "../models";
+import { UserTasks } from "../models";
+import mongoose from "mongoose";
 
 export const deleteTaskController = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-    /* const { email, password } = req.body;
+    const { email } = req.body
+    const { id } = req.params
 
-    try {
-        const user = await User.findOne({ email })
+    if (!email || !id)	{
+		const error = new Error('Email and Task are required')
+		error.name = 'EmailAndTaskAreRequired'
+		throw error
+	}
 
-        if (!user) {
-            res.status(400).json({ message: 'Invalid email or password'})
-            return
+    if (!mongoose.Types.ObjectId.isValid(id)) { 
+        res.status(400).json({ message: 'Invalid Task ID' }); 
+        return; 
+    }
+
+    try{
+        const result = await UserTasks.updateOne(
+            { email: email}, 
+            { $pull: { tasks: { _id: id } } }
+        )
+
+        if (result.modifiedCount > 0) {
+            res.status(200).json({ message: 'OK' })
+        } else {
+            const error = new Error('Document not found')
+            error.name = 'DocumentNotFound'
+            throw error
         }
 
-        const passwordIsMatch = await bcrypt.compare(password, user.password)
-
-        if (!passwordIsMatch) {
-            res.status(400).json({ message: 'Invalid email or password'})
-            return
-        }
-
-        const SECRET = process.env.SECRET_FOR_TOKEN as string
-
-        const token = jwt.sign({ userId: user._id, email: user.email }, SECRET, { expiresIn: '7d' } )
-
-        res.status(200).json({ token: token, message: 'OK' })
-        
     } catch (error) {
         console.error(error)
-        res.status(500).json({ message: "Internal server error" });
-    } */
+        next(error)
+    } 
 };
