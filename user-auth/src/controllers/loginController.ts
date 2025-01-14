@@ -1,25 +1,27 @@
-import { Response } from "express";
+import { NextFunction, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { CustomRequest } from "../interfaces/CustomRequest";
 import { User } from "../models";
 
-export const loginController = async (req: CustomRequest, res: Response): Promise<void> => {
+export const loginController = async (req: CustomRequest, res: Response, next: NextFunction): Promise<void> => {
 	const { email, password } = req.body;
 
 	try {
 		const user = await User.findOne({ email })
 
 		if (!user) {
-			res.status(400).json({ message: 'Invalid email or password'})
-			return
+			const error = new Error('Invalid email or password')
+            error.name = 'InvalidEmailOrPassword'
+            throw error
 		}
 
 		const passwordIsMatch = await bcrypt.compare(password, user.password)
 
 		if (!passwordIsMatch) {
-			res.status(400).json({ message: 'Invalid email or password'})
-			return
+			const error = new Error('Invalid email or password')
+            error.name = 'InvalidEmailOrPassword'
+            throw error
 		}
 
 		const SECRET = process.env.SECRET_FOR_TOKEN as string
@@ -30,6 +32,6 @@ export const loginController = async (req: CustomRequest, res: Response): Promis
 		
 	} catch (error) {
 		console.error(error)
-		res.status(500).json({ message: "Internal server error" });
+		next(error)
 	}
 };

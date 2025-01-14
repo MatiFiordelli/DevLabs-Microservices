@@ -1,19 +1,20 @@
-import { Response } from "express";
+import { NextFunction, Response } from "express";
 import { CustomRequest } from "../interfaces/CustomRequest";
 import { User } from "../models";
 
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-export const signupController = async (req: CustomRequest, res: Response): Promise<void> => {
+export const signupController = async (req: CustomRequest, res: Response, next: NextFunction): Promise<void> => {
     const {email, password} = req.body
     
     try {
         const doesTheUserAlreadyExist = await User.findOne({ email })
 
         if(doesTheUserAlreadyExist) {
-            res.status(409).json({ message: 'User already exists' })
-            return
+            const error = new Error('User already exists')
+            error.name = 'UserAlreadyExists'
+            throw error
         }
 
         const hashedPassword = await bcrypt.hash(password, 10)
@@ -37,6 +38,6 @@ export const signupController = async (req: CustomRequest, res: Response): Promi
 
     } catch (error) {
         console.error(error)
-        res.status(500).json({ message: 'Internal Server Error'})
+        next(error)
     }
 }
