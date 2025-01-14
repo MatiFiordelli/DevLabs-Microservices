@@ -14,7 +14,12 @@ export const TaskSchema = new Schema<IUserTasks>({
             title: {
                 type: String,
                 required: true,
-                trim: true
+                trim: true,
+                index: true
+            },
+            _id: {
+                type: Schema.Types.ObjectId,
+                auto: true
             }
         }
     ]

@@ -1,6 +1,8 @@
+import { Schema } from "mongoose"
 
 export interface ITask {
-    title: string
+    title: string,
+    _id: Schema.Types.ObjectId
 }
 
 export interface IUserTasks extends Document {

@@ -25,7 +25,6 @@ export const mongodbConnection = async (req: Request, res: Response, next: NextF
             error.name = 'DatabaseIsUndefined'
             throw error
         }
-        //req.db = database
 
         next()
 
