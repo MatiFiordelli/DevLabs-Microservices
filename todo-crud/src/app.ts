@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express'
 import cors from 'cors'
-import { router } from './routes'
+import { router } from './routes/index'
 import { errorHandler } from './middlewares/errorHandler'
 import { mongodbConnection } from './middlewares/mongodbConnection'
 import { setupSwagger } from './swagger'

@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { UserTasks } from "../models";
+import { UserTasks } from "../models/index";
 
 
 export const getAllTasksController = async (req: Request, res: Response, next: NextFunction): Promise<void> => {

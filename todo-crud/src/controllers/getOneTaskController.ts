@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { UserTasks } from "../models";
-//import { User } from "../models";
+import { UserTasks } from "../models/index";
 
 export const getOneTaskController = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     const { email } = req.query;

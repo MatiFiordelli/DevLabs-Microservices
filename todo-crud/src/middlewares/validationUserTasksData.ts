@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
 import { userTasksSchema } from '../validation/userTasksSchema'
-//import { CustomRequest } from '../interfaces/CustomRequest'
 
 export const validationUserTasksData = (req: Request, res: Response, next: NextFunction): void => {
     
