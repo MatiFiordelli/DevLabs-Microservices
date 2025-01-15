@@ -3,8 +3,10 @@ import cors from 'cors'
 import { router } from './routes/authRoutes'
 import { errorHandler } from './middlewares/errorHandler'
 import { mongodbConnection } from './middlewares/mongodbConnection'
+import { setupSwagger } from './swagger';
 
 const app = express()
+setupSwagger(app);
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(cors())
@@ -20,6 +22,20 @@ app.options('api/auth/login', corsHeaders)
 app.options('api/auth/signup', corsHeaders)
 app.options('api/auth/verify-token', corsHeaders)
 
+/**
+ * @swagger
+ * /:
+ *   get:
+ *     summary: Welcome message
+ *     responses:
+ *       200:
+ *         description: Welcome message
+ *         content:
+ *           text/plain:
+ *             schema:
+ *               type: string
+ *               example: Welcome to user-auth API
+ */
 app.get('/', (req, res) => {
     res.send('Welcome to user-auth API')
 })
