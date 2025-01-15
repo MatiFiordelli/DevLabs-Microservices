@@ -113,6 +113,6 @@
     "experimentalSpecifierResolution": "node",
     "allowImportingTsExtensions": true
   },
-    "include": ["src/**/*.ts"],
+    "include": ["src/**/*.ts", "cors.d.ts", "dotenv.d.ts"],
     "exclude": ["node_modules"]
 }
