@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { UserTasks } from "../models/index";
+import { UserTasks } from "../models/index.js";
 
 export const createTaskController = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	const { email, task } = req.body

@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import { userTasksSchema } from '../validation/userTasksSchema'
+import { userTasksSchema } from '../validation/userTasksSchema.js'
 
 export const validationUserTasksData = (req: Request, res: Response, next: NextFunction): void => {
     

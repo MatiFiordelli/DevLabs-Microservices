@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import fetch from 'node-fetch';
-import { endpoints } from '../utils/endpoints'
+import { endpoints } from '../utils/endpoints.js'
 
 export const validationToken =  async(req: Request, res: Response, next: NextFunction): Promise<void> => {
     const token = req.headers.authorization?.split(" ")[1]

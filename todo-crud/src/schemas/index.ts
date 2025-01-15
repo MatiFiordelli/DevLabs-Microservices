@@ -1,5 +1,5 @@
 import { Schema } from "mongoose"
-import { IUserTasks } from "../interfaces/IModels"
+import { IUserTasks } from "../interfaces/IModels.js"
 
 export const TaskSchema = new Schema<IUserTasks>({
     email: {

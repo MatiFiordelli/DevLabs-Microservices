@@ -1,11 +1,11 @@
 import express from 'express';
-import { createTaskController } from '../controllers/createTaskController';
-import { deleteTaskController } from '../controllers/deleteTaskController';
-import { getAllTasksController } from '../controllers/getAllTasksController';
-import { getOneTaskController } from '../controllers/getOneTaskController';
-import { updateTaskController } from '../controllers/updateTaskController';
-import { validationUserTasksData } from '../middlewares/validationUserTasksData';
-import { validationToken } from '../middlewares/validationToken';
+import { createTaskController } from '../controllers/createTaskController.js';
+import { deleteTaskController } from '../controllers/deleteTaskController.js';
+import { getAllTasksController } from '../controllers/getAllTasksController.js';
+import { getOneTaskController } from '../controllers/getOneTaskController.js';
+import { updateTaskController } from '../controllers/updateTaskController.js';
+import { validationUserTasksData } from '../middlewares/validationUserTasksData.js';
+import { validationToken } from '../middlewares/validationToken.js';
 
 const router = express.Router();
 
