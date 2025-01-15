@@ -3,11 +3,14 @@ import cors from 'cors'
 import { router } from './routes'
 import { errorHandler } from './middlewares/errorHandler'
 import { mongodbConnection } from './middlewares/mongodbConnection'
+import { setupSwagger } from './swagger'
 
 const app = express()
+setupSwagger(app);
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(cors())
+
 
 const port = process.env.PORT || 4001
 const corsHeaders = (req: Request, res: Response) => {
@@ -18,6 +21,20 @@ const corsHeaders = (req: Request, res: Response) => {
 
 app.options('api/todos', corsHeaders)
 
+/**
+ * @swagger
+ * /:
+ *   get:
+ *     summary: Welcome message
+ *     responses:
+ *       200:
+ *         description: Welcome message
+ *         content:
+ *           text/plain:
+ *             schema:
+ *               type: string
+ *               example: Welcome to todo-crud API
+ */
 app.get('/', (req, res) => {
     res.send('Welcome to todo-crud API')
 })
