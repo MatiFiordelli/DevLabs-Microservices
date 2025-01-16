@@ -1,6 +1,6 @@
 import { NextFunction, Response } from "express";
-import { CustomRequest } from "../interfaces/CustomRequest";
-import { User } from "../models";
+import { CustomRequest } from "../interfaces/CustomRequest.js";
+import { User } from "../models/index.js";
 
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";

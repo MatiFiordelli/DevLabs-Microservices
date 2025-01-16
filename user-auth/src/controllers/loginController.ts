@@ -1,8 +1,8 @@
 import { NextFunction, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { CustomRequest } from "../interfaces/CustomRequest";
-import { User } from "../models";
+import { CustomRequest } from "../interfaces/CustomRequest.js";
+import { User } from "../models/index.js";
 
 export const loginController = async (req: CustomRequest, res: Response, next: NextFunction): Promise<void> => {
 	const { email, password } = req.body;

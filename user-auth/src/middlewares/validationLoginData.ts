@@ -1,6 +1,6 @@
 import { NextFunction, Response } from 'express'
-import { loginSchema } from '../validation/loginnSchema'
-import { CustomRequest } from '../interfaces/CustomRequest'
+import { loginSchema } from '../validation/loginnSchema.js'
+import { CustomRequest } from '../interfaces/CustomRequest.js'
 
 export const validateCredentials = (req: CustomRequest, res: Response, next: NextFunction): void => {
     

@@ -1,9 +1,9 @@
 import express from 'express'
-import { validateCredentials } from '../middlewares/validationLoginData'
-import { loginController } from '../controllers/loginController'
-import { signupController } from '../controllers/signupController'
-import { verifiedTokenOkController } from '../controllers/verifiedTokenOkController'
-import { verifyToken } from '../middlewares/verifyToken'
+import { validateCredentials } from '../middlewares/validationLoginData.js'
+import { loginController } from '../controllers/loginController.js'
+import { signupController } from '../controllers/signupController.js'
+import { verifiedTokenOkController } from '../controllers/verifiedTokenOkController.js'
+import { verifyToken } from '../middlewares/verifyToken.js'
 
 const router = express.Router()
 

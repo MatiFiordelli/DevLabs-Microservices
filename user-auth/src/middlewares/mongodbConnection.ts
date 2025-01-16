@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import { NextFunction, Response } from 'express'
-import { CustomRequest } from '../interfaces/CustomRequest'
+import { CustomRequest } from '../interfaces/CustomRequest.js'
 
 dotenv.config()
 

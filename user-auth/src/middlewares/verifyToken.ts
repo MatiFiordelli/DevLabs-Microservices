@@ -1,7 +1,7 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Response } from "express";
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
-import { CustomRequestWithEmail } from "../interfaces/CustomRequestWithEmail";
+import { CustomRequestWithEmail } from "../interfaces/CustomRequestWithEmail.js";
 
 dotenv.config()
 

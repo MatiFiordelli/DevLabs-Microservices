@@ -1,9 +1,9 @@
 import express, { Request, Response } from 'express'
 import cors from 'cors'
-import { router } from './routes/authRoutes'
-import { errorHandler } from './middlewares/errorHandler'
-import { mongodbConnection } from './middlewares/mongodbConnection'
-import { setupSwagger } from './swagger';
+import { router } from './routes/authRoutes.js'
+import { errorHandler } from './middlewares/errorHandler.js'
+import { mongodbConnection } from './middlewares/mongodbConnection.js'
+import { setupSwagger } from './swagger.js';
 
 const app = express()
 setupSwagger(app);

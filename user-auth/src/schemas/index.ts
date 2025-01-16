@@ -1,5 +1,5 @@
-import { Document, Schema } from "mongoose"
-import { IUser } from "../interfaces/IModels"
+import { Schema } from "mongoose"
+import { IUser } from "../interfaces/IModels.js"
 
 export const UserSchema = new Schema<IUser>({
     email: {
