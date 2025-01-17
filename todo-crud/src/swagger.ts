@@ -1,5 +1,5 @@
-import swaggerJSDoc from 'swagger-jsdoc';
-import swaggerUi from 'swagger-ui-express';
+import swaggerJSDoc from 'swagger-jsdoc/index.js';
+import swaggerUi from 'swagger-ui-express/index.js';
 import { Express } from 'express';
 
 const options = {
@@ -10,7 +10,7 @@ const options = {
       version: '1.0.0',
     },
   },
-  apis: ['./src/routes/*.ts', './src/*.ts'], 
+  apis: ['./**/*.ts'], 
 };
 
 const swaggerSpec = swaggerJSDoc(options);
