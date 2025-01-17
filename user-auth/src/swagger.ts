@@ -1,6 +1,7 @@
 import swaggerJSDoc from 'swagger-jsdoc/index.js';
 import swaggerUi from 'swagger-ui-express/index.js';
 import { Express } from 'express';
+import { router } from './routes/authRoutes.js';
 
 const options = {
   definition: {
@@ -10,11 +11,17 @@ const options = {
       version: '1.0.0',
     },
   },
-  apis: ['./src/routes/*.ts', './src/*.ts'],
+  apis: [
+    /* './src/routes/*.ts', 
+    './src/*.ts', */
+    './**/*.ts',
+    //'./*.ts'
+  ],
 };
 
 const swaggerSpec = swaggerJSDoc(options);
 
 export const setupSwagger = (app: Express) => {
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec)), router;
+  //app.use(router)
 };
