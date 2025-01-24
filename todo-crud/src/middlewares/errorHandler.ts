@@ -56,6 +56,13 @@ export const errorHandler = (
 		return;
 	}
 
+	if (err.name === "TaskAlreadyExists") {
+		res.status(409).json({
+			message: err.message,
+		});
+		return;
+	}
+
 	if (err.name === "MongodbUriNotDefined") {
 		res.status(500).json({
 			message: err.message,

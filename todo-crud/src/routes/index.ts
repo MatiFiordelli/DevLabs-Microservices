@@ -266,7 +266,7 @@ router.get('/todos/:id', getOneTaskController);
  *                   type: string
  *                   example: Internal Server Error
  */
-router.put('/todos/:id', validationUserTasksData, updateTaskController);
+router.put('/todos/:id', validationToken, validationUserTasksData, updateTaskController);
 
 /**
  * @swagger
@@ -326,6 +326,6 @@ router.put('/todos/:id', validationUserTasksData, updateTaskController);
  *                   type: string
  *                   example: Internal Server Error
  */
-router.delete('/todos/:id', validationUserTasksData, deleteTaskController);
+router.delete('/todos/:id', validationToken,validationUserTasksData, deleteTaskController);
 
 export { router };

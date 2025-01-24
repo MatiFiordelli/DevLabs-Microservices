@@ -12,14 +12,17 @@ export const createTaskController = async (req: Request, res: Response, next: Ne
 
 	try {
 		const updatedDocument = await UserTasks.findOneAndUpdate(
-			{ email: email }, 
+			{ email: email, 'tasks.title': { $ne: task }  }, //$ne - query operator (not equal)
 			{ $push: { tasks: {title: task}} },
 			{ 
 				new: true,    //new - return updated document
-				upsert: true  //upsert - if there is no document with this email, create one
+				upsert: true,  //upsert - if there is no document with this email, create one
+				runValidators: true //runValidators - ensure document validation
 			}
 		)
 
+		//await UserTasks.syncIndexes()
+		
 		if (updatedDocument) {
 			res.status(200).json({ updatedDocument, message: 'OK' })
 		} else {
@@ -29,7 +32,14 @@ export const createTaskController = async (req: Request, res: Response, next: Ne
 		}
 
 	} catch (error) {
-		console.error(error)
-		next(error)
+		const customError = error as Error & { code?: number };
+  		console.error(customError);
+
+  		if (customError.code === 11000) {
+			const error = new Error('Task already exists')
+			error.name = 'TaskAlreadyExists'
+			next(error);
+  		}
+  		next(customError);
 	}
 };

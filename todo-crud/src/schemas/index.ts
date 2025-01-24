@@ -13,6 +13,7 @@ export const TaskSchema = new Schema<IUserTasks>({
         {
             title: {
                 type: String,
+                unique: true,
                 required: true,
                 trim: true,
                 index: true
