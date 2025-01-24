@@ -20,7 +20,9 @@ Follow these steps to install and run the project locally:
 4. Start the server:
    npx nodemon ./src/app.ts
 
-5. Access the API: The API will be available at http://localhost:4001
+5. Access the API: The API will be available at: 
+http://localhost:4001
+https://dev-labs-microservices-todo-crud.vercel.app/
 
 ## Usage - Endpoints:
 POST /api/todos: Create a new task.
@@ -30,19 +32,25 @@ PUT /api/todos/:id: Update a task by ID.
 DELETE /api/todos/:id: Delete a task by ID.
 
 ## API Documentation:
-The API documentation is available at http://localhost:4001/api-docs once the server is running.
+The API documentation is available once the server is running, at: 
+http://localhost:4001/api-docs 
+https://dev-labs-microservices-todo-crud.vercel.app/api-docs 
 
 ## Technologies Used:
-Node.js: JavaScript runtime built on Chrome's V8 JavaScript engine.
-Express: Fast, unopinionated, minimalist web framework for Node.js.
-TypeScript: Typed superset of JavaScript that compiles to plain JavaScript.
-Mongoose: Elegant MongoDB object modeling for Node.js.
-cors: Middleware for enabling CORS (Cross-Origin Resource Sharing).
-node-fetch: A light-weight module that brings window.fetch to Node.js.
-Swagger: Simplifies API development by providing tools for API documentation.
-zod: TypeScript-first schema declaration and validation library.
-nodemon: Utility that monitors for any changes in your source and automatically restarts your server.
+1. Node.js: JavaScript runtime built on Chrome's V8 JavaScript engine.
+2. Express: Fast, unopinionated, minimalist web framework for Node.js.
+3. TypeScript: Typed superset of JavaScript that compiles to plain JavaScript.
+4. Mongoose: Elegant MongoDB object modeling for Node.js.
+5. cors: Middleware for enabling CORS (Cross-Origin Resource Sharing).
+6. node-fetch: A light-weight module that brings window.fetch to Node.js.
+7. Swagger: Simplifies API development by providing tools for API documentation.
+8. zod: TypeScript-first schema declaration and validation library.
+9. nodemon: Utility that monitors for any changes in your source and automatically restarts your server.
+10. Sourcetree: A free Git client. It simplifies how you interact with your repositories.
+11. MongoDB Compass: GUI for MongoDB to explore data, run queries, and interact with your database.
+12. ts-jest: A TypeScript preprocessor for Jest, enabling TypeScript testing.
+13. Supertest: An HTTP testing library for APIs, simplifying endpoint testing.
+14. Jest: A JavaScript testing framework known for its ease of use and speed.
 
 ## Running Tests - This project uses Jest for testing. To run the tests, use the following command:
 npm test
-
