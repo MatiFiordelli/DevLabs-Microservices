@@ -10,29 +10,36 @@ Follow these steps to install and run the project locally:
    ```bash
    git clone https://github.com/MatiFiordelli/DevLabs-Microservices.git
    cd user-auth
+   ```
 
 2. Install the dependencies:
+   ```bash
    npm install
+   ```
 
 3. Set up environment variables: Create a .env file in the root of the project and add the following variables:
+   ```bash
    MONGO_URI=
    SECRET_FOR_TOKEN=
+   ```
 
 4. Start the server:
+   ```bash
    npx nodemon ./src/app.ts
+   ```
 
 5. Access the API: The API will be available at:
-   http://localhost:4000
+   http://localhost:4000  
    https://dev-labs-microservices-user-auth.vercel.app/
 
 ## Usage - Endpoints:
-POST /api/auth/login: User login.
-POST /api/auth/signup: User signup.
+POST /api/auth/login: User login.  
+POST /api/auth/signup: User signup.  
 GET /api/auth/verify-token: Verify user token.
 
 ## API Documentation:
 The API documentation is available once the server is running, at: 
-http://localhost:4000/api-docs 
+http://localhost:4000/api-docs  
 https://dev-labs-microservices-user-auth.vercel.app/api-docs/
 
 ## Technologies Used:

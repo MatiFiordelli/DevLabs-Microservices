@@ -10,30 +10,37 @@ Follow these steps to install and run the project locally:
    ```bash
    git clone https://github.com/MatiFiordelli/DevLabs-Microservices.git
    cd todo-crud
+   ```
 
 2. Install the dependencies:
+   ```bash
    npm install
+   ```
 
 3. Set up environment variables: Create a .env file in the root of the project and add the following variables:
+   ```bash
    MONGO_URI=
+   ```
 
 4. Start the server:
+   ```bash
    npx nodemon ./src/app.ts
+   ```
 
 5. Access the API: The API will be available at: 
-http://localhost:4001
+http://localhost:4001  
 https://dev-labs-microservices-todo-crud.vercel.app/
 
 ## Usage - Endpoints:
-POST /api/todos: Create a new task.
-GET /api/todos: Retrieve a list of tasks.
-GET /api/todos/:id: Retrieve a task by ID.
-PUT /api/todos/:id: Update a task by ID.
+POST /api/todos: Create a new task.  
+GET /api/todos: Retrieve a list of tasks.  
+GET /api/todos/:id: Retrieve a task by ID.  
+PUT /api/todos/:id: Update a task by ID.  
 DELETE /api/todos/:id: Delete a task by ID.
 
 ## API Documentation:
 The API documentation is available once the server is running, at: 
-http://localhost:4001/api-docs 
+http://localhost:4001/api-docs  
 https://dev-labs-microservices-todo-crud.vercel.app/api-docs 
 
 ## Technologies Used:
@@ -53,4 +60,6 @@ https://dev-labs-microservices-todo-crud.vercel.app/api-docs
 14. Jest: A JavaScript testing framework known for its ease of use and speed.
 
 ## Running Tests - This project uses Jest for testing. To run the tests, use the following command:
+```bash
 npm test
+```
