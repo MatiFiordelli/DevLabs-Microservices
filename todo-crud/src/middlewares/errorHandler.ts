@@ -70,5 +70,12 @@ export const errorHandler = (
 		return;
 	} 
 
+	if (err.name === "UnableToSaveTask") {
+		res.status(500).json({
+			message: err.message,
+		});
+		return;
+	} 
+
 	res.status(500).json({ message: "Internal Server Error" });
 };
