@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { UserTasks } from "../models/index.js";
+import mongoose from "mongoose";
 
 export const createTaskController = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 	const { email, task } = req.body
@@ -11,24 +12,34 @@ export const createTaskController = async (req: Request, res: Response, next: Ne
 	}
 
 	try {
-		const updatedDocument = await UserTasks.findOneAndUpdate(
-			{ email: email, 'tasks.title': { $ne: task }  }, //$ne - query operator (not equal)
-			{ $push: { tasks: {title: task}} },
-			{ 
-				new: true,    //new - return updated document
-				upsert: true,  //upsert - if there is no document with this email, create one
-				runValidators: true //runValidators - ensure document validation
-			}
-		)
+		let userTasks = await UserTasks.findOne({ email: email });
 
-		//await UserTasks.syncIndexes()
+		if (!userTasks) {
+			userTasks = new UserTasks({
+				email: email,
+				tasks: []
+			})
+		}
+		const taskExists = userTasks.tasks.some(t => t.title === task);
 		
-		if (updatedDocument) {
-			res.status(200).json({ updatedDocument, message: 'OK' })
+		if (taskExists) {
+			const error = new Error() as Error & { code?: number };
+			error.code = 11000 
+			throw error
+
 		} else {
-			const error = new Error('Document not found')
-            error.name = 'DocumentNotFound'
-            throw error
+			const newTask = { title: task, _id: new mongoose.Types.ObjectId() };
+			userTasks.tasks.push(newTask);
+
+			const updatedDocument = await userTasks.save();
+			
+			if (updatedDocument) {
+				res.status(200).json({ updatedDocument, message: 'OK' })
+			} else {
+				const error = new Error('Unable to save task')
+				error.name = 'UnableToSaveTask'
+				throw error
+			}
 		}
 
 	} catch (error) {

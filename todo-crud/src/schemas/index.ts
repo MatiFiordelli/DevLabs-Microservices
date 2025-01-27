@@ -1,4 +1,4 @@
-import { Schema } from "mongoose"
+import { Schema, Types } from "mongoose"
 import { IUserTasks } from "../interfaces/IModels.js"
 
 export const TaskSchema = new Schema<IUserTasks>({
@@ -13,13 +13,12 @@ export const TaskSchema = new Schema<IUserTasks>({
         {
             title: {
                 type: String,
-                unique: true,
                 required: true,
                 trim: true,
-                index: true
+                index: false
             },
             _id: {
-                type: Schema.Types.ObjectId,
+                type: Types.ObjectId,
                 auto: true
             }
         }

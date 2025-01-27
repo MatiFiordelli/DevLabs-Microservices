@@ -1,8 +1,8 @@
-import { Schema } from "mongoose"
+import { Types } from "mongoose"
 
 export interface ITask {
     title: string,
-    _id: Schema.Types.ObjectId
+    _id: Types.ObjectId
 }
 
 export interface IUserTasks extends Document {
